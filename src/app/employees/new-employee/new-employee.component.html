@@ -1,0 +1,61 @@
+<mat-card class="display-flex space-between m-5 align-center">
+    <div>
+        <span style="font-size: 18px;" *ngIf="!isView">{{id ? 'Update' : 'Create'}} Employee</span>
+        <span style="font-size: 18px;" *ngIf="isView">View Employee</span>
+    </div>
+    <div>
+        <button mat-raised-button color="warn" (click)="onBack()">Back</button>
+    </div>
+</mat-card>
+<mat-card class="m-5" *ngIf="showForm">
+    <form [formGroup]="form">
+        <div class="display-flex">
+            <mat-form-field appearance="outline" class="w-30 m-5">
+                <mat-label>DOB</mat-label>
+                <input matInput [matDatepicker]="picker" id="dob" name="dob" formControlName="dob">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="w-30 m-5" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput id="email" name="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="w-30 m-5" appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput id="phone" name="phone" formControlName="phone">
+            </mat-form-field>
+
+        </div>
+        <div>
+
+
+            <mat-form-field class="w-30 m-5" appearance="outline">
+                <mat-label>Company</mat-label>
+                <input matInput id="company" name="company" formControlName="company">
+            </mat-form-field>
+            <mat-form-field class="w-30 m-5" appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput id="fullName" name="fullName" formControlName="fullName">
+            </mat-form-field>
+            <mat-form-field class="w-30 m-5" appearance="outline">
+                <mat-label>Position</mat-label>
+                <input matInput id="position" name="position" formControlName="position">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <div class="w-30 m-5">
+                <mat-radio-group aria-label="Select an option" id="gender" name="gender" formControlName="gender">
+                    <mat-radio-button value="true">Male</mat-radio-button>
+                    <mat-radio-button value="false" style="margin-left: 10px;">Female</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+        </div>
+
+        <div *ngIf="!isView" class="display-flex justify-center">
+            <button mat-raised-button color="primary" (click)="onSave()">{{id ? 'Update': 'Save'}}</button>
+        </div>
+    </form>
+</mat-card>
