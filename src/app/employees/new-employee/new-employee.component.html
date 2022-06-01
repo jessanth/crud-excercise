@@ -12,18 +12,18 @@
         <div class="display-flex">
             <mat-form-field appearance="outline" class="w-30 m-5">
                 <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker" id="dob" name="dob" formControlName="dob">
+                <input matInput [matDatepicker]="picker" id="dob" name="dob" formControlName="dob" required>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="w-30 m-5" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput id="email" name="email" formControlName="email">
+                <input matInput id="email" name="email" formControlName="email" required>
             </mat-form-field>
             <mat-form-field class="w-30 m-5" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input matInput id="phone" name="phone" formControlName="phone">
+                <input matInput id="phone" name="phone" formControlName="phone" required>
             </mat-form-field>
 
         </div>
@@ -32,21 +32,24 @@
 
             <mat-form-field class="w-30 m-5" appearance="outline">
                 <mat-label>Company</mat-label>
-                <input matInput id="company" name="company" formControlName="company">
+                <input matInput id="company" name="company" formControlName="company" required>
             </mat-form-field>
             <mat-form-field class="w-30 m-5" appearance="outline">
                 <mat-label>Full Name</mat-label>
-                <input matInput id="fullName" name="fullName" formControlName="fullName">
+                <input matInput id="fullName" name="fullName" formControlName="fullName" required>
             </mat-form-field>
             <mat-form-field class="w-30 m-5" appearance="outline">
                 <mat-label>Position</mat-label>
-                <input matInput id="position" name="position" formControlName="position">
+                <input matInput id="position" name="position" formControlName="position" required>
             </mat-form-field>
         </div>
 
         <div>
-            <div class="w-30 m-5">
-                <mat-radio-group aria-label="Select an option" id="gender" name="gender" formControlName="gender">
+            <div class="w-30 m-5 display-flex column">
+                <!-- <label id="example-radio-group-label">Gender *</label> -->
+
+                <mat-radio-group aria-label="Select an option" id="gender" name="gender" formControlName="gender"
+                    required>
                     <mat-radio-button value="true">Male</mat-radio-button>
                     <mat-radio-button value="false" style="margin-left: 10px;">Female</mat-radio-button>
                 </mat-radio-group>
@@ -55,7 +58,8 @@
         </div>
 
         <div *ngIf="!isView" class="display-flex justify-center">
-            <button mat-raised-button color="primary" (click)="onSave()">{{id ? 'Update': 'Save'}}</button>
+            <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!form.valid">{{id ? 'Update':
+                'Save'}}</button>
         </div>
     </form>
 </mat-card>

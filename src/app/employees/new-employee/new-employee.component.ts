@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { EmployeesService } from '../employees.service';
@@ -34,13 +34,13 @@ export class NewEmployeeComponent implements OnInit {
   initForm(data?: any) {
     this.form = new FormGroup({
       "id": new FormControl(data && data.id ? data.id : ''),
-      "dob": new FormControl(data && data.dob ? new Date(data.dob) : ''),
-      "email": new FormControl(data && data.email ? data.email : ''),
-      "phone": new FormControl(data && data.phone ? data.phone : ''),
-      "gender": new FormControl(data ? (data.gender == true ? 'true' : 'false') : ''),
-      "company": new FormControl(data && data.company ? data.company : ''),
-      "fullName": new FormControl(data && data.fullName ? data.fullName : ''),
-      "position": new FormControl(data && data.position ? data.position : ''),
+      "dob": new FormControl(data && data.dob ? new Date(data.dob) : '', [Validators.required]),
+      "email": new FormControl(data && data.email ? data.email : '', [Validators.required, Validators.email]),
+      "phone": new FormControl(data && data.phone ? data.phone : '', [Validators.required]),
+      "gender": new FormControl(data ? (data.gender == true ? 'true' : 'false') : '', [Validators.required]),
+      "company": new FormControl(data && data.company ? data.company : '', [Validators.required]),
+      "fullName": new FormControl(data && data.fullName ? data.fullName : '', [Validators.required]),
+      "position": new FormControl(data && data.position ? data.position : '', [Validators.required]),
     })
     if (this.router.url.split('/').includes('view')) {
       this.isView = true;

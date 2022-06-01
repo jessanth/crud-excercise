@@ -22,3 +22,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .align-center{
     align-items: center !important;
 }
+.column{
+    flex-direction: column !important;
+}
